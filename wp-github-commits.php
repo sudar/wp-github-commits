@@ -52,7 +52,9 @@ class WP_Github_Commits {
         if ($post_id > 0) {
             $wp_github_commits_page_fields = get_post_meta($post_id, self::CUSTOM_FIELD, TRUE);
             if (isset($wp_github_commits_page_fields) && is_array($wp_github_commits_page_fields)) {
-                $title = $wp_github_commits_page_fields['widget_title'];
+                if ($wp_github_commits_page_fields['widget_title'] != '') {
+                    $title = $wp_github_commits_page_fields['widget_title'];
+                }
             }
         }
 
