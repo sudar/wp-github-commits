@@ -4,12 +4,15 @@ Plugin Name: WP Github Commits
 Plugin URI: http://sudarmuthu.com/wordpress/wp-github-commits
 Description: Displays the latest commits of a github repo in the sidebar.
 Author: Sudar
-Version: 0.1
+Version: 0.2
 Author URI: http://sudarmuthu.com/
 Text Domain: wp-github-commits
 
 === RELEASE NOTES ===
-2013-02-11 – v0.1 – Initial Release
+2013-02-11 - v0.1 - (Dev Time: 3 hours)
+                  - Initial Release
+2013-02-12 - v0.2 - (Dev Time: 1 hour)
+                  - Added option to take repo name from custom field in a post
 */
 
 /**
@@ -21,6 +24,9 @@ Text Domain: wp-github-commits
  */
 class WP_Github_Commits {
 
+    const CUSTOM_FIELD = 'wp_github_commits_page_fields';
+    const TITLE_FILTER = 'github-commits-title';
+
     /**
      * Initalize the plugin by registering the hooks
      */
@@ -30,16 +36,130 @@ class WP_Github_Commits {
         load_plugin_textdomain( 'wp-github-commits', false, dirname(plugin_basename(__FILE__)) .  '/languages' );
 
         // Register hooks and filters
-        add_filter('github-commits-title', array(&$this, 'filter_title'), 10, 3);
+        add_filter(self::TITLE_FILTER, array(&$this, 'filter_title'), 10, 3);
+
+        add_action('admin_menu', array(&$this, 'add_custom_box'));
+        add_action('save_post', array(&$this, 'save_postdata'));
     }
 
     /**
      * filter title
      */
     function filter_title($title, $user, $repo) {
+        global $post;
+        $post_id = $post->ID;
+
+        if ($post_id > 0) {
+            $wp_github_commits_page_fields = get_post_meta($post_id, self::CUSTOM_FIELD, TRUE);
+            if (isset($wp_github_commits_page_fields) && is_array($wp_github_commits_page_fields)) {
+                $title = $wp_github_commits_page_fields['widget_title'];
+            }
+        }
+
         $title = str_replace("[user]", $user, $title);
         $title = str_replace("[repo]", $repo, $title);
+
         return $title;
+    }
+
+    /**
+     * Adds the custom section in the edit screens for all post types
+     */
+    function add_custom_box() {
+		$post_types = get_post_types( array(), 'objects' );
+		foreach ( $post_types as $post_type ) {
+			if ( $post_type->show_ui ) {
+                add_meta_box( 'wp_github_commits_page_box', __( 'WP Github Commits Page Fields', 'wp-github-commits' ),
+                    array(&$this, 'inner_custom_box'), $post_type->name, 'side' );
+			}
+        }
+    }
+
+    /**
+     * Prints the inner fields for the custom post/page section
+     */
+    function inner_custom_box() {
+        global $post;
+        $post_id = $post->ID;
+
+        $widget_title = '';
+        $widget_user = '';
+        $widget_repo = '';
+
+        if ($post_id > 0) {
+            $wp_github_commits_page_fields = get_post_meta($post_id, self::CUSTOM_FIELD, TRUE);
+
+            if (isset($wp_github_commits_page_fields) && is_array($wp_github_commits_page_fields)) {
+                $widget_title = $wp_github_commits_page_fields['widget_title'];
+                $github_user = $wp_github_commits_page_fields['github_user'];
+                $github_repo = $wp_github_commits_page_fields['github_repo'];
+            }
+        }
+        // Use nonce for verification
+?>
+        <input type="hidden" name="wp_github_commits_noncename" id="wp_github_commits_noncename" value="<?php echo wp_create_nonce( plugin_basename(__FILE__) );?>" />
+        <p>
+            <label> <?php _e('Widget Title', 'wp-github-commits'); ?> <input type="text" name="widget_title" value ="<?php echo $widget_title; ?>"></label><br>
+            <label> <?php _e('Github User', 'wp-github-commits'); ?> <input type="text" name="github_user" id = "github_user" value ="<?php echo $github_user; ?>"></label>
+            <label> <?php _e('Github Repo', 'wp-github-commits'); ?> <input type="text" name="github_repo" id = "github_repo" value ="<?php echo $github_repo; ?>"></label>
+        </p>
+<?php
+    }
+
+    /**
+     * When the post is saved, saves our custom data
+     * @param string $post_id
+     * @return string return post id if nothing is saved
+     */
+    function save_postdata( $post_id ) {
+
+        // Don't do anything during Autosave
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return $post_id;
+        }
+
+        // verify this came from the our screen and with proper authorization,
+        // because save_post can be triggered at other times
+
+		if ( !array_key_exists('wp_github_commits_noncename', $_POST)) {
+			return $post_id;
+		}
+
+        if ( !wp_verify_nonce( $_POST['wp_github_commits_noncename'], plugin_basename(__FILE__) )) {
+            return $post_id;
+        }
+
+        if ( 'page' == $_POST['post_type'] ) {
+            if ( !current_user_can( 'edit_page', $post_id )) {
+                return $post_id;
+            }
+        } elseif (!current_user_can('edit_post', $post_id)) { 
+            return $post_id;
+        }
+
+        // OK, we're authenticated: we need to find and save the data
+
+        $fields = array();
+
+        if (isset($_POST['widget_title'])) {
+            $fields['widget_title'] = $_POST['widget_title'];
+        } else {
+            $fields['widget_title'] = '';
+        }
+
+        if (isset($_POST['github_user'])) {
+            $fields['github_user'] = $_POST['github_user'];
+        } else {
+            $fields['github_user'] = '';
+        }
+
+        if (isset($_POST['github_repo'])) {
+            $fields['github_repo'] = $_POST['github_repo'];
+        } else {
+            $fields['github_repo'] = '';
+        }
+
+        update_post_meta($post_id, self::CUSTOM_FIELD, $fields);
     }
 
     /**
@@ -48,11 +168,31 @@ class WP_Github_Commits {
      */
     public function get_github_commits($user, $repo, $count = 5) {
 
+        global $post;
+        $post_id = $post->ID;
+
         $output = '';
         $counter = 0;
 
         if ($user == '' && $repo == '') {
-            return $output;
+            // Try to get it from custom field
+            if ($post_id > 0) {
+
+                $wp_github_commits_page_fields = get_post_meta($post_id, self::CUSTOM_FIELD, TRUE);
+
+                if (isset($wp_github_commits_page_fields) && is_array($wp_github_commits_page_fields)) {
+                    $widget_title = $wp_github_commits_page_fields['widget_title'];
+                    $github_user = $wp_github_commits_page_fields['github_user'];
+                    $github_repo = $wp_github_commits_page_fields['github_repo'];
+                }
+            }
+
+            if ($github_user == '' && $github_repo == '') {
+                return $output;
+            } else {
+                $user = $github_user;
+                $repo = $github_repo;
+            }
         }
 
         $key = "github-commits-$user-$repo";
@@ -65,7 +205,7 @@ class WP_Github_Commits {
             $github_api = new Github_API();
             $commits = $github_api->get_repo_commits($user, $repo);
 
-            set_transient($key, $commits, 18000); // 60*60*1 - 5 hour
+            set_transient($key, $commits, 5 * HOUR_IN_SECONDS); // 60*60*1 - 5 hour
         }
 
         // TODO: Make it plugable
@@ -124,16 +264,17 @@ class WP_Github_Commits_Widget extends WP_Widget {
         $repo = $instance['repo'];
         $count = absint($instance['count']);
 
-        $title = apply_filters('github-commits-title', $title, $user, $repo);
+        $title = apply_filters(WP_Github_Commits::TITLE_FILTER, $title, $user, $repo);
+        $widget_content = get_github_commits($user, $repo, $count);
 
-        echo $before_widget;
-        echo $before_title;
-        echo $title;
-        echo $after_title;
-
-        echo get_github_commits($user, $repo);
-
-        echo $after_widget;
+        if ($widget_content != '') {
+            echo $before_widget;
+            echo $before_title;
+            echo $title;
+            echo $after_title;
+            echo $widget_content;
+            echo $after_widget;
+        }
     }
 
     /** @see WP_Widget::update */
@@ -194,19 +335,5 @@ class WP_Github_Commits_Widget extends WP_Widget {
 function get_github_commits($user, $repo, $count = 5) {
     global $wp_github_commits;
     return $wp_github_commits->get_github_commits($user, $repo, $count);
-}
-//adjustments to wp-includes/http.php timeout values to workaround slow server responses
-add_filter('http_request_args', 'bal_http_request_args', 100, 1);
-function bal_http_request_args($r) //called on line 237
-{
-	$r['timeout'] = 15;
-	return $r;
-}
- 
-add_action('http_api_curl', 'bal_http_api_curl', 100, 1);
-function bal_http_api_curl($handle) //called on line 1315
-{
-	curl_setopt( $handle, CURLOPT_CONNECTTIMEOUT, 15 );
-	curl_setopt( $handle, CURLOPT_TIMEOUT, 15 );
 }
 ?>
