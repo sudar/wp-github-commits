@@ -26,6 +26,7 @@ class WP_Github_Commits {
 
     const CUSTOM_FIELD = 'wp_github_commits_page_fields';
     const TITLE_FILTER = 'github-commits-title';
+    const CACHE_KEY_SLUG = 'github-commits-';
 
     /**
      * Initalize the plugin by registering the hooks
@@ -197,7 +198,7 @@ class WP_Github_Commits {
             }
         }
 
-        $key = "github-commits-$user-$repo";
+        $key = self::CACHE_KEY_SLUG . "$user-$repo";
 
         if (false === ( $commits = get_transient( $key ) ) ) {
             if(!class_exists('Github_API')){
