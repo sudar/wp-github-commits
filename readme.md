@@ -3,7 +3,7 @@ Contributors: sudar
 Tags: github, commits, widget
 Requires at least: 3.5
 Tested up to: 3.5.1
-Stable tag: 0.2
+Stable tag: 0.3
 
 Displays the latest commits of a github repo in the sidebar.
 
@@ -89,11 +89,18 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 = v0.2 (2013-02-13) - (Dev time: 1 hour) =
 * Added option to take repo name from custom field in a post
 
+= v0.3 (2013-02-14) - (Dev time: 1 hour) =
+* Use custom field for widget title only if it non-blank
+* Formatted the date into a human readable format
+
 == Upgrade Notice ==
 
 = 0.2 =
 
 Added option to take repo name from custom field in a post
+
+= 0.3 =
+Formatted the date into human readable format
 
 ==Readme Generator== 
 
