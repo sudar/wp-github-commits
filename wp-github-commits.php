@@ -218,7 +218,7 @@ class WP_Github_Commits {
             $output .= '<li class = "github-commit">';
             $output .= "<a href = 'https://github.com/$user/$repo/commit/{$commit->sha}'>" . $commit->commit->message . '</a> ';
             $output .= __('by', 'wp-github-commits') . " <a href = 'https://github.com/{$commit->commit->author->name}'>" . $commit->commit->author->name . '</a> ';
-            $output .= __('on', 'wp-github-commits') . ' ' . $commit->commit->author->date;
+            $output .= __('on', 'wp-github-commits') . ' ' . date("M d, Y @ H:i", strtotime($commit->commit->author->date));
             $output .= '</li>';
 
             if ($count == $counter) {
