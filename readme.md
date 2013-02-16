@@ -61,6 +61,11 @@ If you are not familiar with either git or Github then refer to this [guide to s
 
 Support for the Plugin is available from the [Plugin's home page][1]. If you have any questions or suggestions, do leave a comment there or contact me in [twitter][2].
 
+### TODO
+
+- Shortcode support
+- Ability to hide author name
+
 ### Stay updated
 
 I would be posting updates about this Plugin in my [blog][4] and in [Twitter][2]. If you want to be informed when new version of this Plugin is released, then you can either subscribe to this [blog's RSS feed][3] or [follow me in Twitter][2].
