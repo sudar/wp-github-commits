@@ -129,8 +129,8 @@ class WP_Github_Commits {
         <input type="hidden" name="wp_github_commits_noncename" id="wp_github_commits_noncename" value="<?php echo wp_create_nonce( plugin_basename(__FILE__) );?>" />
         <p>
             <label> <?php _e('Widget Title', 'wp-github-commits'); ?> <input type="text" name="<?php echo self::CUSTOM_FIELD_TITLE; ?>" value ="<?php echo $widget_title; ?>"></label><br>
-            <label> <?php _e('Github User', 'wp-github-commits'); ?> <input type="text" name="<?php self::CUSTOM_FIELD_USER; ?>" id = "<?php self::CUSTOM_FIELD_USER; ?>" value ="<?php echo $github_user; ?>"></label>
-            <label> <?php _e('Github Repo', 'wp-github-commits'); ?> <input type="text" name="<?php self::CUSTOM_FIELD_REPO; ?>" id = "<?php self::CUSTOM_FIELD_REPO; ?>" value ="<?php echo $github_repo; ?>"></label>
+            <label> <?php _e('Github User', 'wp-github-commits'); ?> <input type="text" name="<?php echo self::CUSTOM_FIELD_USER; ?>" id = "<?php echo self::CUSTOM_FIELD_USER; ?>" value ="<?php echo $github_user; ?>"></label>
+            <label> <?php _e('Github Repo', 'wp-github-commits'); ?> <input type="text" name="<?php echo self::CUSTOM_FIELD_REPO; ?>" id = "<?php echo self::CUSTOM_FIELD_REPO; ?>" value ="<?php echo $github_repo; ?>"></label>
         </p>
 <?php
     }
