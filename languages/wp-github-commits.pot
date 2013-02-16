@@ -1,0 +1,83 @@
+# Copyright (C) 2013 WP Github Commits
+# This file is distributed under the same license as the WP Github Commits package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Github Commits 0.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-github-commits\n"
+"POT-Creation-Date: 2013-02-16 09:58:12+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: wp-github-commits.php:101
+msgid "WP Github Commits Page Fields"
+msgstr ""
+
+#: wp-github-commits.php:131
+msgid "Widget Title"
+msgstr ""
+
+#: wp-github-commits.php:132
+msgid "Github User"
+msgstr ""
+
+#: wp-github-commits.php:133
+msgid "Github Repo"
+msgstr ""
+
+#: wp-github-commits.php:246
+msgid "by"
+msgstr ""
+
+#: wp-github-commits.php:247
+msgid "on"
+msgstr ""
+
+#: wp-github-commits.php:274
+msgid "Github commits for a user or repo"
+msgstr ""
+
+#. #-#-#-#-#  wp-github-commits.pot (WP Github Commits 0.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: wp-github-commits.php:280
+msgid "WP Github Commits"
+msgstr ""
+
+#: wp-github-commits.php:288 wp-github-commits.php:326
+msgid "Recent Commits"
+msgstr ""
+
+#: wp-github-commits.php:335
+msgid "Title:"
+msgstr ""
+
+#: wp-github-commits.php:340
+msgid "User:"
+msgstr ""
+
+#: wp-github-commits.php:345
+msgid "Repo:"
+msgstr ""
+
+#: wp-github-commits.php:350
+msgid "No of commits to show:"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://sudarmuthu.com/wordpress/wp-github-commits"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Displays the latest commits of a github repo in the sidebar."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Sudar"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://sudarmuthu.com/"
+msgstr ""
