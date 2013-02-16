@@ -4,7 +4,7 @@ Plugin Name: WP Github Commits
 Plugin URI: http://sudarmuthu.com/wordpress/wp-github-commits
 Description: Displays the latest commits of a github repo in the sidebar.
 Author: Sudar
-Version: 0.3
+Version: 0.4
 Author URI: http://sudarmuthu.com/
 Text Domain: wp-github-commits
 
@@ -16,6 +16,9 @@ Text Domain: wp-github-commits
 2013-02-14 - v0.3 - (Dev Time: 1 hour)
                   - Use custom field for widget title only if it non-blank
                   - Formatted the date into a human readable format
+2013-02-16 - v0.4 - (Dev Time: 1 hour)
+                  - Changed custom field names to make it compatiable with other Plugins
+
 */
 
 /*  Copyright 2013  Sudar Muthu  (email : sudar@sudarmuthu.com)
@@ -44,6 +47,10 @@ Text Domain: wp-github-commits
 class WP_Github_Commits {
 
     const CUSTOM_FIELD = 'wp_github_commits_page_fields';
+    const CUSTOM_FIELD_TITLE = 'gc_widget_title';
+    const CUSTOM_FIELD_USER = 'github_user';
+    const CUSTOM_FIELD_REPO = 'github_repo';
+
     const TITLE_FILTER = 'github-commits-title';
     const CACHE_KEY_SLUG = 'github-commits-';
 
@@ -63,7 +70,7 @@ class WP_Github_Commits {
     }
 
     /**
-     * filter title
+     * filter widget title
      */
     function filter_title($title, $user, $repo) {
         global $post;
@@ -72,8 +79,8 @@ class WP_Github_Commits {
         if ($post_id > 0) {
             $wp_github_commits_page_fields = get_post_meta($post_id, self::CUSTOM_FIELD, TRUE);
             if (isset($wp_github_commits_page_fields) && is_array($wp_github_commits_page_fields)) {
-                if ($wp_github_commits_page_fields['widget_title'] != '') {
-                    $title = $wp_github_commits_page_fields['widget_title'];
+                if ($wp_github_commits_page_fields[self::CUSTOM_FIELD_TITLE] != '') {
+                    $title = $wp_github_commits_page_fields[self::CUSTOM_FIELD_TITLE];
                 }
             }
         }
@@ -105,25 +112,25 @@ class WP_Github_Commits {
         $post_id = $post->ID;
 
         $widget_title = '';
-        $widget_user = '';
-        $widget_repo = '';
+        $github_user = '';
+        $github_repo = '';
 
         if ($post_id > 0) {
             $wp_github_commits_page_fields = get_post_meta($post_id, self::CUSTOM_FIELD, TRUE);
 
             if (isset($wp_github_commits_page_fields) && is_array($wp_github_commits_page_fields)) {
-                $widget_title = $wp_github_commits_page_fields['widget_title'];
-                $github_user = $wp_github_commits_page_fields['github_user'];
-                $github_repo = $wp_github_commits_page_fields['github_repo'];
+                $widget_title = $wp_github_commits_page_fields[self::CUSTOM_FIELD_TITLE];
+                $github_user = $wp_github_commits_page_fields[self::CUSTOM_FIELD_USER];
+                $github_repo = $wp_github_commits_page_fields[self::CUSTOM_FIELD_REPO];
             }
         }
         // Use nonce for verification
 ?>
         <input type="hidden" name="wp_github_commits_noncename" id="wp_github_commits_noncename" value="<?php echo wp_create_nonce( plugin_basename(__FILE__) );?>" />
         <p>
-            <label> <?php _e('Widget Title', 'wp-github-commits'); ?> <input type="text" name="widget_title" value ="<?php echo $widget_title; ?>"></label><br>
-            <label> <?php _e('Github User', 'wp-github-commits'); ?> <input type="text" name="github_user" id = "github_user" value ="<?php echo $github_user; ?>"></label>
-            <label> <?php _e('Github Repo', 'wp-github-commits'); ?> <input type="text" name="github_repo" id = "github_repo" value ="<?php echo $github_repo; ?>"></label>
+            <label> <?php _e('Widget Title', 'wp-github-commits'); ?> <input type="text" name="<?php echo self::CUSTOM_FIELD_TITLE; ?>" value ="<?php echo $widget_title; ?>"></label><br>
+            <label> <?php _e('Github User', 'wp-github-commits'); ?> <input type="text" name="<?php self::CUSTOM_FIELD_USER; ?>" id = "<?php self::CUSTOM_FIELD_USER; ?>" value ="<?php echo $github_user; ?>"></label>
+            <label> <?php _e('Github Repo', 'wp-github-commits'); ?> <input type="text" name="<?php self::CUSTOM_FIELD_REPO; ?>" id = "<?php self::CUSTOM_FIELD_REPO; ?>" value ="<?php echo $github_repo; ?>"></label>
         </p>
 <?php
     }
@@ -163,22 +170,22 @@ class WP_Github_Commits {
 
         $fields = array();
 
-        if (isset($_POST['widget_title'])) {
-            $fields['widget_title'] = $_POST['widget_title'];
+        if (isset($_POST[self::CUSTOM_FIELD_TITLE])) {
+            $fields[self::CUSTOM_FIELD_TITLE] = $_POST[self::CUSTOM_FIELD_TITLE];
         } else {
-            $fields['widget_title'] = '';
+            $fields[self::CUSTOM_FIELD_TITLE] = '';
         }
 
-        if (isset($_POST['github_user'])) {
-            $fields['github_user'] = $_POST['github_user'];
+        if (isset($_POST[self::CUSTOM_FIELD_USER])) {
+            $fields[self::CUSTOM_FIELD_USER] = $_POST[self::CUSTOM_FIELD_USER];
         } else {
-            $fields['github_user'] = '';
+            $fields[self::CUSTOM_FIELD_USER] = '';
         }
 
-        if (isset($_POST['github_repo'])) {
-            $fields['github_repo'] = $_POST['github_repo'];
+        if (isset($_POST[self::CUSTOM_FIELD_REPO])) {
+            $fields[self::CUSTOM_FIELD_REPO] = $_POST[self::CUSTOM_FIELD_REPO];
         } else {
-            $fields['github_repo'] = '';
+            $fields[self::CUSTOM_FIELD_REPO] = '';
         }
 
         update_post_meta($post_id, self::CUSTOM_FIELD, $fields);
@@ -203,9 +210,9 @@ class WP_Github_Commits {
                 $wp_github_commits_page_fields = get_post_meta($post_id, self::CUSTOM_FIELD, TRUE);
 
                 if (isset($wp_github_commits_page_fields) && is_array($wp_github_commits_page_fields)) {
-                    $widget_title = $wp_github_commits_page_fields['widget_title'];
-                    $github_user = $wp_github_commits_page_fields['github_user'];
-                    $github_repo = $wp_github_commits_page_fields['github_repo'];
+                    $widget_title = $wp_github_commits_page_fields[self::CUSTOM_FIELD_TITLE];
+                    $github_user = $wp_github_commits_page_fields[self::CUSTOM_FIELD_USER];
+                    $github_repo = $wp_github_commits_page_fields[self::CUSTOM_FIELD_REPO];
                 }
             }
 
