@@ -17,8 +17,8 @@ Text Domain: wp-github-commits
                   - Use custom field for widget title only if it non-blank
                   - Formatted the date into a human readable format
 2013-02-16 - v0.4 - (Dev Time: 1 hour)
-                  - Changed custom field names to make it compatiable with other Plugins
-
+                  - Changed custom field names to make it compatible with other Plugins
+                  - Generated pot file for translation
 */
 
 /*  Copyright 2013  Sudar Muthu  (email : sudar@sudarmuthu.com)
