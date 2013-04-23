@@ -1,13 +1,13 @@
-﻿=== WP Github Commits ===
-Contributors: sudar 
-Tags: github, commits, widget
-Requires at least: 3.5
-Tested up to: 3.5.1
-Stable tag: 0.4
+﻿# WP Github Commits #
+**Contributors:** sudar 
+**Tags:** github, commits, widget
+**Requires at least:** 3.5
+**Tested up to:** 3.5.1
+**Stable tag:** 0.4
 
 Displays the latest commits of a github repo in the sidebar.
 
-== Description ==
+## Description ##
 Displays the latest commits of a github repo in the sidebar.
 
 ### Features
@@ -26,7 +26,7 @@ The following options can be passed in the $options array
 
 - $user (string) - Github user name. 
 - $repo (string) - Github repo name.
-- count (int) - defualt 5 -  Number of recent commits to show
+- count (int) - default 5 -  Number of recent commits to show
 
 #### Custom field
 
@@ -53,7 +53,7 @@ You can use the code from [this gist](https://gist.github.com/sudar/4945588) to 
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
-### Development and Support
+### Development
 
 The development of the Plugin happens over at [github](https://github.com/sudar/wp-github-commits). If you want to contribute to the Plugin, fork the [project at github](https://github.com/sudar/wp-github-commits) and send me a pull request.
 
@@ -61,20 +61,24 @@ If you are not familiar with either git or Github then refer to this [guide to s
 
 Support for the Plugin is available from the [Plugin's home page][1]. If you have any questions or suggestions, do leave a comment there or contact me in [twitter][2].
 
+If you are looking for ideas, then you can start with one of the following TODO items :)
+
 ### TODO
 
 - Shortcode support
 - Ability to hide author name
 
+### Support
+
+- If you have found a bug/issue or have a feature request, then post them in [github issues](https://github.com/sudar/wp-github-commits/issues)
+- If you have a question about usage or need help to troubleshoot, then post in WordPress forums or leave a comment in [Plugins's home page][1]
+- If anything else, then contact me in [twitter][2].
+
 ### Stay updated
 
 I would be posting updates about this Plugin in my [blog][4] and in [Twitter][2]. If you want to be informed when new version of this Plugin is released, then you can either subscribe to this [blog's RSS feed][3] or [follow me in Twitter][2].
 
-### Links
-
-*   [Plugin home page][1]
-*   [Author's Blog][4]
-*   [Other Plugins by the author][5]
+Also checkout [other Plugins by the author][5].
 
  [1]: http://sudarmuthu.com/wordpress/wp-github-commits
  [2]: http://twitter.com/sudarmuthu
@@ -82,37 +86,37 @@ I would be posting updates about this Plugin in my [blog][4] and in [Twitter][2]
  [4]: http://sudarmuthu.com/blog
  [5]: http://sudarmuthu.com/wordpress
 
-== Installation ==
+## Installation ##
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. You should see a new widget called "Github commits" in the widgets pages, which you can drag and drop in the sidebar of your theme.
 
-== Changelog ==
+## Changelog ##
 
-= v0.1 (2013-02-11) - (Dev time: 3 hour) =
+### v0.1 - (2013-02-11) - (Dev time: 3 hour) ###
 *   Initial Release
 
-= v0.2 (2013-02-13) - (Dev time: 1 hour) =
+### v0.2 - (2013-02-13) - (Dev time: 1 hour) ###
 * Added option to take repo name from custom field in a post
 
-= v0.3 (2013-02-14) - (Dev time: 1 hour) =
+### v0.3 - (2013-02-14) - (Dev time: 1 hour) ###
 * Use custom field for widget title only if it non-blank
 * Formatted the date into a human readable format
 
-= v0.4 (2013-02-16) - (Dev Time: 1 hour) =
+### v0.4 - (2013-02-16) - (Dev Time: 1 hour) ###
 * Changed custom field names to make it compatible with other Plugins
 * Generated pot file for translation
 
-== Upgrade Notice ==
+## Upgrade Notice ##
 
-= 0.2 =
+### 0.2 ###
 Added option to take repo name from custom field in a post
 
-= 0.3 =
+### 0.3 ###
 Formatted the date into human readable format
 
-= 0.4 =
+### 0.4 ###
 Changed custom field names to make it compatible with other Plugins
 
-==Readme Generator== 
+## Readme Generator ##
 
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
