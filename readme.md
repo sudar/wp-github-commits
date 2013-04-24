@@ -59,8 +59,6 @@ The development of the Plugin happens over at [github](https://github.com/sudar/
 
 If you are not familiar with either git or Github then refer to this [guide to see how fork and send pull request](http://sudarmuthu.com/blog/contributing-to-project-hosted-in-github).
 
-Support for the Plugin is available from the [Plugin's home page][1]. If you have any questions or suggestions, do leave a comment there or contact me in [twitter][2].
-
 If you are looking for ideas, then you can start with one of the following TODO items :)
 
 ### TODO
@@ -73,19 +71,21 @@ If you are looking for ideas, then you can start with one of the following TODO 
 
 - If you have found a bug/issue or have a feature request, then post them in [github issues](https://github.com/sudar/wp-github-commits/issues)
 - If you have a question about usage or need help to troubleshoot, then post in WordPress forums or leave a comment in [Plugins's home page][1]
+- If you like the Plugin, then kindly leave a review/feedback at [WordPress repo page][6].
 - If anything else, then contact me in [twitter][2].
 
 ### Stay updated
 
 I would be posting updates about this Plugin in my [blog][4] and in [Twitter][2]. If you want to be informed when new version of this Plugin is released, then you can either subscribe to this [blog's RSS feed][3] or [follow me in Twitter][2].
 
-Also checkout [other Plugins by the author][5].
+Also checkout the [other WordPress Plugins][5] that I have created.
 
  [1]: http://sudarmuthu.com/wordpress/wp-github-commits
  [2]: http://twitter.com/sudarmuthu
  [3]: http://sudarmuthu.com/feed
  [4]: http://sudarmuthu.com/blog
  [5]: http://sudarmuthu.com/wordpress
+ [6]: http://wordpress.org/extend/plugins/wp-github-commits/
 
 ## Installation ##
 
