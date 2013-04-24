@@ -3,7 +3,7 @@
 **Tags:** github, commits, widget
 **Requires at least:** 3.5
 **Tested up to:** 3.5.1
-**Stable tag:** 0.4
+**Stable tag:** 0.5
 
 Displays the latest commits of a github repo in the sidebar.
 
@@ -67,6 +67,7 @@ If you are looking for ideas, then you can start with one of the following TODO 
 
 - Shortcode support
 - Ability to hide author name
+- Make the output of widget content plugable
 
 ### Support
 
@@ -105,6 +106,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 ### v0.4 - (2013-02-16) - (Dev Time: 1 hour) ###
 * Changed custom field names to make it compatible with other Plugins
 * Generated pot file for translation
+
+### v0.5 - (2013-04-24) - (Dev Time: 1 hour) ###
+* Added documentation
 
 ## Upgrade Notice ##
 
