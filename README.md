@@ -91,36 +91,6 @@ Also checkout the [other WordPress Plugins][5] that I have created.
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. You should see a new widget called "Github commits" in the widgets pages, which you can drag and drop in the sidebar of your theme.
 
-## Changelog ##
-
-### v0.1 - (2013-02-11) - (Dev time: 3 hour) ###
-*   Initial Release
-
-### v0.2 - (2013-02-13) - (Dev time: 1 hour) ###
-* Added option to take repo name from custom field in a post
-
-### v0.3 - (2013-02-14) - (Dev time: 1 hour) ###
-* Use custom field for widget title only if it non-blank
-* Formatted the date into a human readable format
-
-### v0.4 - (2013-02-16) - (Dev Time: 1 hour) ###
-* Changed custom field names to make it compatible with other Plugins
-* Generated pot file for translation
-
-### v0.5 - (2013-04-24) - (Dev Time: 1 hour) ###
-* Added documentation
-
-## Upgrade Notice ##
-
-### 0.2 ###
-Added option to take repo name from custom field in a post
-
-### 0.3 ###
-Formatted the date into human readable format
-
-### 0.4 ###
-Changed custom field names to make it compatible with other Plugins
-
 ## Readme Generator ##
 
 This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
