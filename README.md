@@ -89,7 +89,9 @@ Also checkout the [other WordPress Plugins][5] that I have created.
 
 ## Installation ##
 
-Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. You should see a new widget called "Github commits" in the widgets pages, which you can drag and drop in the sidebar of your theme.
+The simplest way to install the plugin is to use the built-in automatic plugin installer. Go to plugins -> Add New and then enter the name of the plugin to automatically install it.
+
+If for some reason the above method doesn't work then you can download the plugin as a zip file, extract it and then use your favorite FTP client and then upload the contents of the zip file to the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
 
 ## Readme Generator ##
 
