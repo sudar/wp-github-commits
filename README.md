@@ -1,9 +1,9 @@
 ﻿# WP Github Commits #
-**Contributors:** sudar 
-**Tags:** github, commits, widget
-**Requires at least:** 3.5
-**Tested up to:** 3.5.1
-**Stable tag:** 0.5
+**Contributors:** sudar  
+**Tags:** github, commits, widget  
+**Requires at least:** 3.5  
+**Tested up to:** 4.1  
+**Stable tag:** 0.5  
 
 Displays the latest commits of a github repo in the sidebar.
 
@@ -22,11 +22,11 @@ In addition to using the widget, you can also use the following template functio
 
 `get_github_commits($user, $repo, $count);`
 
-The following options can be passed in the $options array
+The following options can be passed in the `$options` array
 
-- $user (string) - Github user name. 
-- $repo (string) - Github repo name.
-- count (int) - default 5 -  Number of recent commits to show
+- `$user` (string) - Github user name.
+- `$repo` (string) - Github repo name.
+- `$count` (int) - default 5 -  Number of recent commits to show
 
 #### Custom field
 
