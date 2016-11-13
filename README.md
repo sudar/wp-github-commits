@@ -2,8 +2,8 @@
 **Contributors:** sudar  
 **Tags:** github, commits, widget  
 **Requires at least:** 3.5  
-**Tested up to:** 4.1  
-**Stable tag:** 0.5  
+**Tested up to:** 4.7  
+**Stable tag:** 0.6  
 
 Displays the latest commits of a github repo in the sidebar.
 
