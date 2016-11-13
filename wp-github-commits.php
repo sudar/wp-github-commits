@@ -6,23 +6,12 @@ Description: Displays the latest commits of a github repo in the sidebar
 Author: Sudar
 Version: 0.5
 Author URI: http://sudarmuthu.com/
-Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me  
+Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
 Text Domain: wp-github-commits
 Domain Path: languages/
 
 === RELEASE NOTES ===
-2013-02-11 - v0.1 - (Dev Time: 3 hours)
-                  - Initial Release
-2013-02-13 - v0.2 - (Dev Time: 1 hour)
-                  - Added option to take repo name from custom field in a post
-2013-02-14 - v0.3 - (Dev Time: 1 hour)
-                  - Use custom field for widget title only if it non-blank
-                  - Formatted the date into a human readable format
-2013-02-16 - v0.4 - (Dev Time: 1 hour)
-                  - Changed custom field names to make it compatible with other Plugins
-                  - Generated pot file for translation
-2013-04-24 - v0.5 - (Dev Time: 1 hour)
-				  - Added documentation
+Check readme file for full release notes
 */
 
 /*  Copyright 2013  Sudar Muthu  (email : sudar@sudarmuthu.com)
