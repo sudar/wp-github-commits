@@ -155,7 +155,7 @@ class WP_Github_Commits {
             if ( !current_user_can( 'edit_page', $post_id )) {
                 return $post_id;
             }
-        } elseif (!current_user_can('edit_post', $post_id)) { 
+        } elseif (!current_user_can('edit_post', $post_id)) {
             return $post_id;
         }
 
@@ -234,8 +234,9 @@ class WP_Github_Commits {
         $output = '<ul class = "github-commits">';
         foreach($commits as $commit) {
             $counter ++;
+            $commit_message = wp_trim_words( $commit->commit->message, 30, '...' );
             $output .= '<li class = "github-commit">';
-            $output .= "<a href = 'https://github.com/$user/$repo/commit/{$commit->sha}'>" . $commit->commit->message . '</a> ';
+            $output .= "<a href = 'https://github.com/$user/$repo/commit/{$commit->sha}'>" . $commit_message . '</a> ';
             $output .= __('by', 'wp-github-commits') . " <a href = 'https://github.com/{$commit->commit->author->name}'>" . $commit->commit->author->name . '</a> ';
             $output .= __('on', 'wp-github-commits') . ' ' . date("M d, Y @ H:i", strtotime($commit->commit->author->date));
             $output .= '</li>';
@@ -353,7 +354,7 @@ class WP_Github_Commits_Widget extends WP_Widget {
 
 /**
  * Template function to display the badge
- * 
+ *
  * @param string $user
  * @param string $repo
  */

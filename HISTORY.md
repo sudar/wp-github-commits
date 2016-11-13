@@ -1,5 +1,8 @@
 ## Changelog ##
 
+### v0.6 - (2016-11-13) - (Dev Time: 0.5 hour) ###
+- Tweak: Trimmed commit messages to 30 characters
+
 ### v0.5 - (2013-04-24) - (Dev Time: 1 hour) ###
 - Tweak: Added documentation
 
@@ -18,6 +21,9 @@
 - Initial Release
 
 ## Upgrade Notice ##
+
+### 0.6 ###
+Trimmed commit messages to 30 characters
 
 ### 0.4 ###
 Changed custom field names to make it compatible with other Plugins
